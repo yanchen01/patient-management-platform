@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'python app.py'
+    environment:
+      MONGODB_USERNAME: root
+      MONGODB_PASSWORD: rootpassword
+    ports:
+      - 8000:5000
+    volumes:
+      - .:/app
+    depends_on:
+      - mongodb_container
+
+  # queue:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   command: 'python -u consumer.py'
+  #   depends_on:
+  #     - mongodb_container
+
+  mongodb_container:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_DATABASE: devices
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+
+volumes:
+  mongodb_data_container:
