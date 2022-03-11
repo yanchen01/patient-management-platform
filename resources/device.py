@@ -83,6 +83,7 @@ class Device(Resource):
         }
     )
     def put(self):
+        """Updates a device"""
         data = _device_parser.parse_args()
         try:
             device = DeviceModel.objects(_id=data['id']).first()
@@ -102,6 +103,7 @@ class Device(Resource):
         }
     )
     def delete(self):
+        """Deletes a device"""
         data = _device_parser.parse_args()
         try:
             device = DeviceModel.objects(_id=data['id']).first()
