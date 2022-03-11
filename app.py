@@ -20,7 +20,9 @@ CORS(app)
 """
 Custom logger configuration
 """
-logging.basicConfig(level=logging.DEBUG, filename="app.log",
+# logging.basicConfig(level=logging.DEBUG, filename="app.log",
+#                     format="%(asctime)s -%(levelname)s -%(message)s")
+logging.basicConfig(level=logging.DEBUG,
                     format="%(asctime)s -%(levelname)s -%(message)s")
 
 
