@@ -1,4 +1,4 @@
-from flask_restx import reqparse, inputs
+from flask_restx import reqparse
 from datetime import datetime
 
 

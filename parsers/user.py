@@ -12,7 +12,7 @@ def date_type(date):
 
 
 # Swagger documentation
-date_type.__schema__ = {'type': 'string', 'format': 'mm/dd/yyyy'}
+date_type.__schema__ = {'type': 'string', 'format': 'mm-dd-yyyy'}
 
 
 _users_parser = reqparse.RequestParser()

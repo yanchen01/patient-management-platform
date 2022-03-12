@@ -8,7 +8,7 @@ def test_add_device(app, client):
     data = {
         "id": "abcde",
         "type": "temp",
-        "date_purchased": "2022-03-10",
+        "date_purchased": "03-10-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
     }
@@ -24,7 +24,7 @@ def test_get_device(app, client):
     data = {
         "id": "abcde",
         "type": "temp",
-        "date_purchased": "2022-03-10",
+        "date_purchased": "03-10-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
     }
@@ -48,7 +48,7 @@ def test_update_device(app, client):
     data = {
         "id": "abcde",
         "type": "temp",
-        "date_purchased": "2022-03-10",
+        "date_purchased": "03-10-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
     }
@@ -74,7 +74,7 @@ def test_delete_device(app, client):
     data = {
         "id": "abcde",
         "type": "temp",
-        "date_purchased": "2022-03-10",
+        "date_purchased": "03-10-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
     }
@@ -106,7 +106,7 @@ def test_get_all_devices(app, client):
     data = {
         "id": "abcde",
         "type": "temp",
-        "date_purchased": "2022-03-10",
+        "date_purchased": "03-10-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
     }
@@ -118,7 +118,7 @@ def test_get_all_devices(app, client):
     data = {
         "id": "abc",
         "type": "weight",
-        "date_purchased": "2022-03-11",
+        "date_purchased": "03-11-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
     }
