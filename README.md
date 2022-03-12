@@ -122,11 +122,11 @@ The documentation to each module API is accessible at the homepage, which contai
     - Mac User: python3 app.py
 OR
 2. Run Flask App via Docker Container (docker installed)
-  ```sh
-    docker build -t flaskapp:latest .
-    docker run -it -p 5000:5000 flaskapp
-    Optional: docker run -it -d -p 5000:5000 flaskapp (automatically runs in background)
-  ```
+    ```sh
+        docker build -t flaskapp:latest .
+        docker run -it -p 4000:4000 flaskapp
+        Optional: docker run -it -d -p 4000:4000 flaskapp (automatically runs in background)
+    ```
 Flask app runs on http://localhost:4000/
 <p align="right">(<a href="#top">back to top</a>)</p>
 
