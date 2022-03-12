@@ -22,9 +22,9 @@ jobs:
         python-version: "3.10"
     - name: Install dependencies
       run: |
-        apt-get -y install mongodb
-        apt-get update
-        service mongodb start
+        sudo apt-get -y install mongodb
+        sudo apt-get update
+        sudo service mongodb start
         python -m pip install --upgrade pip
         pip install flake8 pytest pytest-cov
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
