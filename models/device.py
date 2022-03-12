@@ -1,8 +1,6 @@
-from ast import dump
-from  flask_mongoengine import Document
+from flask_mongoengine import Document
 import mongoengine as me
 from datetime import datetime
-from json import dumps
 
 
 class Device(Document):

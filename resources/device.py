@@ -1,6 +1,4 @@
-from flask import jsonify
 from flask_restx import Resource, Namespace
-from models import device
 
 # Import models
 from models.device import Device as DeviceModel
@@ -90,9 +88,7 @@ class Device(Resource):
             device._update(data)
             device.save()
             return {"message": "Update device successful.", "data": device.json()}, 200
-
-        except Exception as e:
-            print(e)
+        except:
             return {"message": "Update device unsuccessful."}, 400
 
     @device_ns.doc(
