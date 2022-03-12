@@ -1,9 +1,7 @@
-import os
 import logging
 
-from flask import Flask, Blueprint, redirect
+from flask import Flask, redirect
 from flask_cors import CORS
-from flask_restx import Api
 from flask_mongoengine import MongoEngine
 
 from resources import api_blueprint

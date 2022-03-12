@@ -49,7 +49,7 @@ class Devices(Resource):
             data = DeviceModel.objects.all()
             # serialize
             devices = [device.json() for device in data]
-            return {"message": "Get all devices successful", "data": devices}, 200
+            return {"message": "Get all devices successful.", "data": devices}, 200
         except:
             return {"message": "Get all devices unsuccessful. Please try again."}, 400
 
@@ -62,8 +62,8 @@ class Device(Resource):
     @device_ns.doc(
         parser=_device_parser,
         responses={
-            200: "Get all devices successful.",
-            400: "Get all devices unsuccessful.",
+            200: "Get device successful.",
+            400: "Get device unsuccessful.",
         }
     )
     def get(self):
@@ -71,9 +71,9 @@ class Device(Resource):
         data = _device_parser.parse_args()
         try:
             device = DeviceModel.objects(_id=data['id']).first()
-            return {"message": "Get all devices successful", "data": device.json()}, 200
+            return {"message": "Get device successful", "data": device.json()}, 200
         except:
-            return {"message": "Get all devices unsuccessful. Please try again."}, 400
+            return {"message": "Get device unsuccessful. Please try again."}, 400
 
     @device_ns.doc(
         parser=_device_parser,
