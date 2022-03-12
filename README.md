@@ -31,7 +31,7 @@ The medical platform should allow multiple roles of personnel to interact with t
       <a href="#user-stories">User Stories</a>
     </li>
     <li>
-      <a href="#branching-strategy">Branching Strategy</a>
+      <a href="#branch-strategy">Branching Strategy</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
