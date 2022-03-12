@@ -32,7 +32,8 @@ class Devices(Resource):
         try:
             new_device.save()
             return {"message": "Device added successfully."}, 200
-        except:
+        except Exception as e:
+            print(e)
             return {"message": "Adding device unsuccessful. Please try again."}, 400
 
     @device_ns.doc(

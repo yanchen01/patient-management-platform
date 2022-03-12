@@ -37,12 +37,12 @@ class User(Document):
     def json(self):
         return {
             'id': self._id,
-            'firstName': self.first_name,
-            'lastName': self.last_name,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
             'email': self.email,
-            'userType': self.user_role,
+            'user_role': self.user_role,
             'gender': self.gender,
-            'dateOfBirth': self.date_of_birth,
+            'date_of_birth': self.date_of_birth,
             'address': self.address,
             'age': self.age
         }
