@@ -1,6 +1,7 @@
 aniso8601==9.0.1
 attrs==21.4.0
 autopep8==1.6.0
+bidict==0.21.4
 click==8.0.4
 coverage==6.3.2
 dnspython==2.2.1
@@ -9,6 +10,7 @@ Flask==2.0.3
 Flask-Cors==3.0.10
 flask-mongoengine==1.0.0
 flask-restx==0.5.1
+Flask-SocketIO==5.1.1
 Flask-WTF==1.0.0
 idna==3.3
 iniconfig==1.1.1
@@ -26,6 +28,8 @@ pyparsing==3.0.7
 pyrsistent==0.18.1
 pytest==7.0.1
 pytest-cov==3.0.0
+python-engineio==4.3.1
+python-socketio==5.5.2
 pytz==2021.3
 six==1.16.0
 toml==0.10.2
