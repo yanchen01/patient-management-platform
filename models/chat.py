@@ -1,3 +1,4 @@
+from email.policy import default
 from flask_mongoengine import Document
 import mongoengine as me
 from datetime import datetime
@@ -38,3 +39,23 @@ class Chat(Document):
             'content': self.content,
             'attachment': self.attachment,
         }
+
+
+class ChatRoom(Document):
+    _id = me.StringField(required=True, primary_key=True)
+    users = me.ListField(me.StringFeild(), required=True)
+    chats = me.ListField(me.EmbeddedDocumentField(Chat))
+
+    def _set(self, data):
+        self._id = data['id']
+        self.users = data['users']
+
+    def get_id(self):
+        return self._id
+
+    def _add_chat(self, chat):
+        try:
+            self.chats.append(chat)
+            self.save()
+        except:
+            raise Exception('Chat Exception')
