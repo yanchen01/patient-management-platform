@@ -1,11 +1,12 @@
 from flask_mongoengine import Document
 import mongoengine as me
 
+
 class Device(Document):
     """
     Document schema for a device.
 
-    Device types can include: temp, blood_pressure, glucometer, pulse, weight, blood_saturation.
+    Device types can include: 'thermometer', 'blood_pressure', 'glucometer', 'pulse', 'scale', 'oximeter'
     """
     # required fields
     _id = me.StringField(required=True, primary_key=True)

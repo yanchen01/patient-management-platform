@@ -23,8 +23,8 @@ _devices_parser.add_argument('id',
                              help="This field cannot be blank.")
 _devices_parser.add_argument('type',
                              type=str,
-                             choices=('temp', 'blood_pressure', 'glucometer',
-                                      'pulse', 'weight', 'blood_saturation'),
+                             choices=('thermometer', 'blood_pressure', 'glucometer',
+                                      'pulse', 'scale', 'oximeter'),
                              required=True,
                              location=('json'),
                              help="This field cannot be blank.")
@@ -63,8 +63,8 @@ _device_parser.add_argument('id',
                             help="This field cannot be blank.")
 _device_parser.add_argument('type',
                             type=str,
-                            choices=('temp', 'blood_pressure', 'glucometer',
-                                     'pulse', 'weight', 'blood_saturation'),
+                            choices=('thermometer', 'blood_pressure', 'glucometer',
+                                     'pulse', 'scale', 'oximeter'),
                             required=False,
                             location='args',
                             help="This field cannot be blank.")
