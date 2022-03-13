@@ -14,7 +14,7 @@ class DeviceMeasurement(Document):
 
     def __validate_fields(self, data):
         """Private method to validate data fields"""
-        device_type = data["deviceType"]
+        device_type = data["device_type"]
         unit = data["unit"]
         if device_type == "thermometer":
             if unit != "celsius" and unit != "fahrenheit":
@@ -34,13 +34,16 @@ class DeviceMeasurement(Document):
         if device_type == "blood_pressure":
             if unit != "mmhg":
                 raise ValueError
+    
+    def _delete(self):
+        self.delete()
 
     def _set(self, data):
         self.__validate_fields(data)
         self._id = data['id']
-        self.device_id = data['deviceId']
-        self.device_type = data['deviceType']
-        self.user_id = data["userId"]
+        self.device_id = data['device_id']
+        self.device_type = data['device_type']
+        self.user_id = data["user_id"]
         self.reading = data['reading']
         self.unit = data['unit']
 
@@ -52,10 +55,10 @@ class DeviceMeasurement(Document):
     def json(self):
         return {
             'id': self._id,
-            'deviceId': self.device_id,
-            'deviceType': self.device_type,
+            'device_id': self.device_id,
+            'device_type': self.device_type,
             'reading': self.reading,
             'unit': self.unit,
-            'userId': self.user_id,
+            'user_id': self.user_id,
             'timestamp': self.timestamp.strftime("%m/%d/%Y, %H:%M:%S.%f")
         }

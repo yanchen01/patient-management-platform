@@ -7,7 +7,7 @@ def test_add_device(app, client):
     url = f'{BASE_URL}/'
     data = {
         "id": "abcde",
-        "type": "temp",
+        "type": "thermometer",
         "date_purchased": "03-10-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
@@ -23,7 +23,7 @@ def test_get_device(app, client):
     url = f'{BASE_URL}/'
     data = {
         "id": "abcde",
-        "type": "temp",
+        "type": "thermometer",
         "date_purchased": "03-10-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
@@ -47,7 +47,7 @@ def test_update_device(app, client):
     url = f'{BASE_URL}/'
     data = {
         "id": "abcde",
-        "type": "temp",
+        "type": "thermometer",
         "date_purchased": "03-10-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
@@ -60,12 +60,12 @@ def test_update_device(app, client):
     url = f'{BASE_URL}/detail'
     response = client.put(url, query_string={
         "id": "abcde",
-        "type": "weight"
+        "type": "scale"
     })
     assert response.status_code == 200
     assert response.json['message'] == 'Update device successful.'
     assert response.json['data']['id'] == 'abcde'
-    assert response.json['data']['type'] == 'weight'
+    assert response.json['data']['type'] == 'scale'
 
 
 def test_delete_device(app, client):
@@ -73,7 +73,7 @@ def test_delete_device(app, client):
     url = f'{BASE_URL}/'
     data = {
         "id": "abcde",
-        "type": "temp",
+        "type": "thermometer",
         "date_purchased": "03-10-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
@@ -105,7 +105,7 @@ def test_get_all_devices(app, client):
     url = f'{BASE_URL}/'
     data = {
         "id": "abcde",
-        "type": "temp",
+        "type": "thermometer",
         "date_purchased": "03-10-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
@@ -117,7 +117,7 @@ def test_get_all_devices(app, client):
     url = f'{BASE_URL}/'
     data = {
         "id": "abc",
-        "type": "weight",
+        "type": "scale",
         "date_purchased": "03-11-2022",
         "firmware_version": "a1",
         "serial_num": "abc"
