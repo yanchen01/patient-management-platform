@@ -1,5 +1,4 @@
 import logging
-from tkinter.font import names
 
 from flask import Flask, redirect
 from flask_cors import CORS
@@ -8,7 +7,7 @@ from flask_socketio import SocketIO
 
 from resources import api_blueprint
 
-from models import Chat, ChatRoom
+from models.chat import Chat, ChatRoom
 
 
 """
@@ -91,8 +90,8 @@ def message_handler(json):
         socketio.emit('message_received', {'status': 'failed'})
 
 
-socketio.on('new_room', chat_room_handler, namespace='/chat')
-socketio.on('new_message', message_handler, namespace='/chat')
+socketio.on('new_room', chat_room_handler)
+socketio.on('new_message', message_handler)
 
 
 if __name__ == "__main__":

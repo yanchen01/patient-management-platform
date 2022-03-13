@@ -4,7 +4,7 @@ import mongoengine as me
 from datetime import datetime
 
 
-class Chat(Document):
+class Chat(me.EmbeddedDocument):
     _id = me.StringField(required=True, primary_key=True)
     timestamp = me.DateTimeField(default=datetime.now)
     from_user = me.StringField(required=True)
@@ -43,7 +43,7 @@ class Chat(Document):
 
 class ChatRoom(Document):
     _id = me.StringField(required=True, primary_key=True)
-    users = me.ListField(me.StringFeild(), required=True)
+    users = me.ListField(me.StringField(), required=True)
     chats = me.ListField(me.EmbeddedDocumentField(Chat))
 
     def _set(self, data):
