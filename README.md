@@ -34,14 +34,14 @@ The medical platform should allow multiple roles of personnel to interact with t
       <a href="#branch-strategy">Branching Strategy</a>
     </li>
     <li>
+      <a href="#project-features">Project Features</a>
+    </li>
+    <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites-installation">Prerequisites Installation</a></li>
         <li><a href="#usage">Usage</a></li>
       </ul>
-    </li>
-    <li>
-      <a href="#project-features">Project Features</a>
     </li>
   </ol>
 </details>
@@ -90,6 +90,15 @@ Branch from `main` when developing a new feature/module. For example, if develop
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- Project Features -->
+## Project Features
+1. Device Module
+2. Device Measurement Module
+3. User Module
+4. Chat Module (located in app.py) using SocketIO
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 <!-- GETTING STARTED -->
@@ -133,12 +142,5 @@ OR
 Flask app runs on http://localhost:4000/
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<!-- Project Features -->
-### Project Features
-1. Device Module
-2. Device Measurement Module
-3. User Module
-4. Chat Module (located in app.py) using SocketIO
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
