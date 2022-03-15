@@ -40,6 +40,9 @@ The medical platform should allow multiple roles of personnel to interact with t
         <li><a href="#usage">Usage</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#project-features">Project Features</a>
+    </li>
   </ol>
 </details>
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -136,4 +139,6 @@ Flask app runs on http://localhost:4000/
 2. Device Measurement Module
 3. User Module
 4. Chat Module (located in app.py) using SocketIO
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
