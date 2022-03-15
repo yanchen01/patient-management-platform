@@ -130,3 +130,10 @@ OR
 Flask app runs on http://localhost:4000/
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- Project Features -->
+### Project Features
+1. Device Module
+2. Device Measurement Module
+3. User Module
+4. Chat Module (located in app.py) using SocketIO
+
