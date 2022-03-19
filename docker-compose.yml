@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./api
+    #   args:
+    #     - db_pass=${db_pass:-default}
+    # environment: 
+    #   - db_pass=${db_pass:-default}
+    volumes:
+      - ./api:/app
+    ports: 
+      - 4000:4000
+  rabbit:
+    hostname: rabbit
+    image: "rabbitmq:3-management"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  mongodb_container:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+
+  speech_to_text:
+    build: './api/speech_to_text'
+    user: nobody
+    depends_on:
+      - rabbit
+      - app
+      - mongodb_container

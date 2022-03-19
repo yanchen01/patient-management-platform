@@ -1,9 +1,11 @@
 import logging
+import os
 
-from flask import Flask, redirect
+from flask import Flask, redirect, request
 from flask_cors import CORS
 from flask_mongoengine import MongoEngine
 from flask_socketio import SocketIO
+from celery import Celery
 
 from resources import api_blueprint
 
@@ -25,6 +27,10 @@ Custom logger configuration
 logging.basicConfig(level=logging.DEBUG,
                     format="%(asctime)s -%(levelname)s -%(message)s")
 
+"""
+Audio File Upload Config
+"""
+app.config['AUDIO_FILE_DIR'] = "speech_to_text"
 
 """
 Database Config
@@ -41,6 +47,45 @@ db = MongoEngine(app)
 @app.route('/')
 def index():
     return redirect('/api/swagger')
+
+
+"""
+Spech To Text API
+"""
+worker = Celery('speech_to_text_tasks',
+                broker='amqp://admin:mypass@rabbit:5672',
+                backend='mongodb://mongodb_container:27017/speech_to_text')
+
+
+@app.route('/speech-to-text', methods=["POST"])
+def begin_task():
+    audioFile = None
+    try:
+        audioFile = request.files['file']
+    except:
+        return {'message': "No file detected"}, 400
+
+    if audioFile.filename == "":
+        return {'message': "Invalid name"}, 400
+
+    audioFile.save(os.path.join(
+        app.config['AUDIO_FILE_DIR'], audioFile.filename))
+    r = worker.send_task('task.speech_to_text', kwargs={
+        'afile': audioFile.filename})
+    return {"task_id": r.id}, 200
+
+
+@ app.route('/speech-to-text/status/<task_id>')
+def status(task_id):
+    status = worker.AsyncResult(task_id, app=worker)
+    return {"status": str(status.state)}, 200
+
+
+@ app.route('/speech-to-text/result/<task_id>')
+def result(task_id):
+    result = worker.AsyncResult(task_id).result
+    print('=====received result',result)
+    return {'result': str(result)}, 200
 
 
 """
