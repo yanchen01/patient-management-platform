@@ -83,7 +83,6 @@ def status(task_id):
 @ app.route('/speech-to-text/result/<task_id>')
 def result(task_id):
     result = worker.AsyncResult(task_id).result
-    print('=====received result',result)
     return {'result': str(result)}, 200
 
 
