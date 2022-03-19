@@ -19,7 +19,9 @@ def speech_to_text(afile):
         audioFile = sr.AudioFile(afile)
         with audioFile as source:
             data = recognizer.record(source)
+        print('begin transcribing!!!')
         transcript = recognizer.recognize_google(data, key=None)
         print('=============Transcript',transcript)
         return transcript
     return ""
+

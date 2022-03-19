@@ -68,8 +68,7 @@ def begin_task():
     if audioFile.filename == "":
         return {'message': "Invalid name"}, 400
 
-    audioFile.save(os.path.join(
-        app.config['AUDIO_FILE_DIR'], audioFile.filename))
+    audioFile.save("speech_to_text/"+audioFile.filename)
     r = worker.send_task('task.speech_to_text', kwargs={
         'afile': audioFile.filename})
     return {"task_id": r.id}, 200
