@@ -7,9 +7,12 @@ import speech_recognition as sr
 
 logger = get_task_logger(__name__)
 
+# app = Celery('speech_to_text_tasks',
+#              broker='amqp://admin:mypass@rabbit:5672',
+#              backend='mongodb://mongodb_container:27017/speech_to_text')
 app = Celery('speech_to_text_tasks',
              broker='amqp://admin:mypass@rabbit:5672',
-             backend='mongodb://mongodb_container:27017/speech_to_text')
+             backend='mongodb://localhost/speech_to_text')
 
 
 @app.task()

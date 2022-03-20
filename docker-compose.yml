@@ -4,10 +4,10 @@ services:
   app:
     build:
       context: ./api
-    #   args:
-    #     - db_pass=${db_pass:-default}
-    # environment: 
-    #   - db_pass=${db_pass:-default}
+      args:
+        - db_pass=${db_pass}
+    environment: 
+      - db_pass=${db_pass}
     volumes:
       - ./api:/app
     ports: 
@@ -24,7 +24,7 @@ services:
   mongodb_container:
     image: mongo:latest
     ports:
-      - "27018:27018"
+      - "27017:27017"
 
   speech_to_text:
     build: './api/speech_to_text'
