@@ -96,6 +96,8 @@ Branch from `main` when developing a new feature/module. For example, if develop
 2. Device Measurement Module
 3. User Module
 4. Chat Module (located in app.py) using SocketIO
+5. Queue System for Async Processing with RabbitMQ
+6. Speech to Text API
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
