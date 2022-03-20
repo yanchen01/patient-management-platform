@@ -35,8 +35,6 @@ app.config['AUDIO_FILE_DIR'] = "speech_to_text"
 """
 Database Config
 """
-# if in dev env
-print('===DB PASSWORD',os.environ["db_pass"])
 app.config['MONGODB_SETTINGS'] = {
     'host': f'mongodb+srv://ychen01:{os.environ["db_pass"]}@cluster0.5ica7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 }
