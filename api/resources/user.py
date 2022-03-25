@@ -32,11 +32,11 @@ class Users(Resource):
 
         try:
             new_user.save()
-            return {"message": "User added successfully."}, 200, {"Access-Control-Allow-Origin": "*"}
+            return {"message": "User added successfully."}, 200
         except Exception as e:
             print(e)
             print('here')
-            return {"message": "Adding device unsuccessful. Please try again."}, 400, {"Access-Control-Allow-Origin": "*"}
+            return {"message": "Adding device unsuccessful. Please try again."}, 400
 
     @user_ns.doc(
         response={
@@ -50,9 +50,9 @@ class Users(Resource):
             data = UserModel.objects.all()
             # serialize
             users = [user.json() for user in data]
-            return {"message": "Get all users successful.", "data": users}, 200, {"Access-Control-Allow-Origin": "*"}
+            return {"message": "Get all users successful.", "data": users}, 200
         except:
-            return {"message": "Get all users unsuccessful. Please try again."}, 400, {"Access-Control-Allow-Origin": "*"}
+            return {"message": "Get all users unsuccessful. Please try again."}, 400
 
 
 @user_ns.route('/detail')
