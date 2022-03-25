@@ -186,7 +186,7 @@ def test_check_user_password(app, client):
 
     # get device detail
     url = f'{BASE_URL}/login'
-    response = client.get(url, query_string={
+    response = client.get(url, json={
         "id": "abc",
         "password": "test123"
     })
