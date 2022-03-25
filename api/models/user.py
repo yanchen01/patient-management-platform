@@ -34,6 +34,9 @@ class User(Document):
     def _delete(self):
         self.delete()
 
+    def check_password(self, password):
+        return self.password == password
+
     def json(self):
         return {
             'id': self._id,

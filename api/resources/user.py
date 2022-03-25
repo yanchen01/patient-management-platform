@@ -1,10 +1,11 @@
+from flask_cors import CORS, cross_origin
 from flask_restx import Resource, Namespace
 
 # Import models
 from models.user import User as UserModel
 
 # Import parsers
-from parsers.user import _users_parser, _user_parser
+from parsers.user import _users_parser, _user_parser, _user_login_parser
 
 user_ns = Namespace('user', 'User methods')
 
@@ -31,10 +32,11 @@ class Users(Resource):
 
         try:
             new_user.save()
-            return {"message": "User added successfully."}, 200
+            return {"message": "User added successfully."}, 200, {"Access-Control-Allow-Origin": "*"}
         except Exception as e:
             print(e)
-            return {"message": "Adding device unsuccessful. Please try again."}, 400
+            print('here')
+            return {"message": "Adding device unsuccessful. Please try again."}, 400, {"Access-Control-Allow-Origin": "*"}
 
     @user_ns.doc(
         response={
@@ -48,9 +50,9 @@ class Users(Resource):
             data = UserModel.objects.all()
             # serialize
             users = [user.json() for user in data]
-            return {"message": "Get all users successful.", "data": users}, 200
+            return {"message": "Get all users successful.", "data": users}, 200, {"Access-Control-Allow-Origin": "*"}
         except:
-            return {"message": "Get all users unsuccessful. Please try again."}, 400
+            return {"message": "Get all users unsuccessful. Please try again."}, 400, {"Access-Control-Allow-Origin": "*"}
 
 
 @user_ns.route('/detail')
@@ -108,3 +110,29 @@ class User(Resource):
             return {"message": "Delete user successful."}, 200
         except:
             return {"message": "Delete user unsuccessful."}, 400
+
+
+@user_ns.route('/login')
+class Users(Resource):
+    """
+    Login a user
+    """
+    @user_ns.doc(
+        responses={
+            200: "User login successfully.",
+            400: "User login unsuccessful. Please try again.",
+        },
+        parser=_user_login_parser
+    )
+    def post(self):
+        """Log in user"""
+
+        data = _user_login_parser.parse_args()
+
+        # create new user
+        user = UserModel.objects(_id=data['id']).first()
+
+        if user.check_password(data['password']):
+            return {"message": "User login successfully."}, 200
+
+        return {"message": "User login unsuccessful. Please try again."}, 400

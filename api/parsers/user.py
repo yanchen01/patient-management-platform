@@ -134,3 +134,15 @@ _user_parser.add_argument('age',
                           location='args',
                           help="This field cannot be blank."
                           )
+
+_user_login_parser = reqparse.RequestParser()
+_user_login_parser.add_argument('id',
+                          type=str,
+                          required=True,
+                          location='json',
+                          help="This field cannot be blank.")
+_user_login_parser.add_argument('password',
+                          type=str,
+                          required=True,
+                          location='json',
+                          help="This field cannot be blank.")
