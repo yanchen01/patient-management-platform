@@ -22,10 +22,15 @@ import {
 	NumberIncrementStepper,
 	NumberDecrementStepper
 } from '@chakra-ui/react';
+import { Link as RedirectLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
+import axios from '../axios-api';
+
 export default function SignUp() {
+	let navigate = useNavigate();
+
 	const [ showPassword, setShowPassword ] = useState(false);
 	const [ firstName, setFirstName ] = useState('');
 	const [ lastName, setLastName ] = useState('');
@@ -37,20 +42,31 @@ export default function SignUp() {
 	const [ address, setAddress ] = useState('');
 	const [ age, setAge ] = useState('');
 
-	function registerUserHandler(e) {
+	async function registerUserHandler(e) {
 		e.preventDefault();
 
-		console.log({
-			firstName,
-			lastName,
-			email,
+		const newUser = {
+			id: email,
+			first_name: firstName,
+			last_name: lastName,
+			email: email,
 			password,
-			userRole,
+			user_role: userRole,
 			gender,
-			dateOfBirth,
+			date_of_birth: dateOfBirth,
 			address,
 			age
-		});
+		};
+
+		try {
+			const res = await axios.post('/user/', newUser);
+
+			if (res.status === 200) {
+				navigate('/signin');
+			}
+		} catch (e) {
+			console.error(e);
+		}
 	}
 
 	return (
@@ -182,7 +198,10 @@ export default function SignUp() {
 							</Stack>
 							<Stack pt={6}>
 								<Text align={'center'}>
-									Already a user? <Link color={'blue.400'}>Login</Link>
+									Already a user? {' '}
+									<Link as={RedirectLink} to="/signin" color={'blue.400'}>
+										Login
+									</Link>
 								</Text>
 							</Stack>
 						</Stack>

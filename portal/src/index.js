@@ -3,11 +3,15 @@ import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
-import { ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme } from '@chakra-ui/react';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { ChakraProvider, theme } from '@chakra-ui/react';
 
 import App from './App';
+import SignIn from './containers/SignIn';
 import SignUp from './containers/SignUp';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Dashboard from './containers/Dashboard';
 
 ReactDOM.render(
 	<StrictMode>
@@ -15,15 +19,10 @@ ReactDOM.render(
 		<ChakraProvider theme={theme}>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<App />}>
-						{/* <Route index element={<Home />} /> */}
-						{/* <Route path="teams" element={<Teams />}>
-          <Route path=":teamId" element={<Team />} />
-          <Route path="new" element={<NewTeamForm />} />
-          <Route index element={<LeagueStandings />} />
-        </Route> */}
-					</Route>
+					<Route path="/" element={<App />} />
 					<Route path="/signup" element={<SignUp />} />
+					<Route path="/signin" element={<SignIn />} />
+					<Route path="/dashboard" element={<Dashboard />} />
 				</Routes>
 			</BrowserRouter>
 		</ChakraProvider>
