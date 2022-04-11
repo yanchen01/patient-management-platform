@@ -1,7 +1,28 @@
 import React, { useState } from 'react';
 
-import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Button, Text, Stack, Center } from '@chakra-ui/react';
+import {
+	Table,
+	Thead,
+	Tbody,
+	Tr,
+	Th,
+	Td,
+	TableContainer,
+	Button,
+	Text,
+	Stack,
+	Center,
+	Box,
+	useColorModeValue,
+	FormControl,
+	FormLabel,
+	Input,
+	Select,
+	useDisclosure
+} from '@chakra-ui/react';
 import AddModal from '../Modal/AddModal';
+
+import axios from '../../axios-api';
 
 const Entry = ({ children }) => (
 	<Tr>
@@ -11,46 +32,91 @@ const Entry = ({ children }) => (
 	</Tr>
 );
 
-export default function MeasurementTable({ measurements }) {
+export default function MeasurementTable({ measurements, userId, onAddMeasurement }) {
 	const [ deviceId, setDeviceId ] = useState('');
 	const [ deviceType, setDeviceType ] = useState('');
 	const [ reading, setReading ] = useState(0);
 	const [ unit, setUnit ] = useState('');
 
-	const AddForm = <h1>Add form here</h1>;
+	// modal state
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
-	// const AddForm = (
-	// 	<form action="" onSubmit={addMeasurementHandler}>
-	// 		<Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
-	// 			<Stack spacing={4}>
-	// 				<FormControl id="email" onChange={(e) => setEmail(e.target.value)} value={email}>
-	// 					<FormLabel>Email address</FormLabel>
-	// 					<Input type="email" />
-	// 				</FormControl>
-	// 				<FormControl id="password">
-	// 					<FormLabel>Password</FormLabel>
-	// 					<Input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
-	// 				</FormControl>
-	// 				<Stack spacing={10}>
-	// 					<Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
-	// 						<Checkbox>Remember me</Checkbox>
-	// 						<Link color={'blue.400'}>Forgot password?</Link>
-	// 					</Stack>
-	// 					<Button
-	// 						bg={'blue.400'}
-	// 						color={'white'}
-	// 						_hover={{
-	// 							bg: 'blue.500'
-	// 						}}
-	// 						type="submit"
-	// 					>
-	// 						Sign in
-	// 					</Button>
-	// 				</Stack>
-	// 			</Stack>
-	// 		</Box>
-	// 	</form>
-	// );
+	const addMeasurementHandler = async () => {
+		const newMeasurement = {
+			id: deviceId,
+			device_id: deviceId,
+			device_type: deviceType,
+			reading,
+			unit,
+			user_id: userId
+		};
+
+		try {
+			const res = await axios.post('/measurement/', newMeasurement);
+
+			if (res.status === 200) {
+				onClose();
+				onAddMeasurement({
+					deviceType,
+					reading,
+					unit
+				});
+			}
+		} catch (e) {
+			console.error(e);
+		}
+	};
+
+	const AddForm = (
+		<form action="" onSubmit={addMeasurementHandler}>
+			<Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
+				<Stack spacing={4}>
+					<FormControl
+						id="deviceId"
+						onChange={(e) => setDeviceId(e.target.value)}
+						value={deviceId}
+						isRequired
+					>
+						<FormLabel>Device Id</FormLabel>
+						<Input type="text" />
+					</FormControl>
+
+					<FormControl id="deviceType" isRequired>
+						<Select
+							placeholder="Device Type"
+							onChange={(e) => setDeviceType(e.target.value)}
+							value={deviceType}
+						>
+							<option value="thermometer">thermometer</option>
+							<option value="scale">scale</option>
+							<option value="pulse">pulse</option>
+							<option value="oximeter">oximeter</option>
+							<option value="glucometer">glucometer</option>
+							<option value="blood_pressure">blood pressure</option>
+						</Select>
+					</FormControl>
+
+					<FormControl id="reading" onChange={(e) => setReading(e.target.value)} value={reading} isRequired>
+						<FormLabel>Reading</FormLabel>
+						<Input type="number" />
+					</FormControl>
+
+					<FormControl id="unit" isRequired>
+						<Select placeholder="Unit" onChange={(e) => setUnit(e.target.value)} value={unit} isRequired>
+							<option value="celsius">celsius</option>
+							<option value="fahrenheit">fahrenheit</option>
+							<option value="lbs">lbs</option>
+							<option value="kg">kg</option>
+							<option value="bpm">bpm</option>
+							<option value="percent">percent</option>
+							<option value="mg/dl">mg/dl</option>
+							<option value="mmhg">mmhg</option>
+						</Select>
+					</FormControl>
+				</Stack>
+			</Box>
+		</form>
+	);
 
 	return (
 		<TableContainer>
@@ -71,7 +137,15 @@ export default function MeasurementTable({ measurements }) {
 					</Tbody>
 				</Table>
 				<Center>
-					<AddModal buttonText={'Add Measurement'} title="Add Measurement" body={AddForm} />
+					<AddModal
+						buttonText={'Add Measurement'}
+						title="Add Measurement"
+						body={AddForm}
+						addMeasurementHandler={addMeasurementHandler}
+						isOpen={isOpen}
+						onOpen={onOpen}
+						onClose={onClose}
+					/>
 				</Center>
 			</Stack>
 		</TableContainer>

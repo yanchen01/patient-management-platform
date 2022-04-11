@@ -13,9 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
-
-export default function AddModal({ buttonText, title, body }) {
-	const { isOpen, onOpen, onClose } = useDisclosure();
+export default function AddModal({ buttonText, title, body, addMeasurementHandler, isOpen, onOpen, onClose }) {
 	return (
 		<React.Fragment>
 			<Button
@@ -35,15 +33,15 @@ export default function AddModal({ buttonText, title, body }) {
 				<ModalContent>
 					<ModalHeader>{title}</ModalHeader>
 					<ModalCloseButton />
-					<ModalBody>
-						{body}
-					</ModalBody>
+					<ModalBody>{body}</ModalBody>
 
 					<ModalFooter>
-						<Button colorScheme="blue" mr={3} onClick={onClose}>
+						<Button onClick={addMeasurementHandler} colorScheme="blue" mr={3}>
 							Submit
 						</Button>
-						<Button variant="ghost">Close</Button>
+						<Button variant="ghost" onClick={onClose}>
+							Close
+						</Button>
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
