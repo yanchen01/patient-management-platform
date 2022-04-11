@@ -92,12 +92,20 @@ Branch from `main` when developing a new feature/module. For example, if develop
 
 <!-- Project Features -->
 ## Project Features
+Backend
 1. Device Module
 2. Device Measurement Module
 3. User Module
 4. Chat Module (located in app.py) using SocketIO
 5. Queue System for Async Processing with RabbitMQ
 6. Speech to Text API
+
+Frontend
+1. Landing Page
+2. Sign Up
+3. Sign In
+4. Dashboard for patient view
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

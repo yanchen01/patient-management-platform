@@ -1,4 +1,3 @@
-from flask_cors import CORS, cross_origin
 from flask_restx import Resource, Namespace
 
 # Import models
@@ -34,8 +33,6 @@ class Users(Resource):
             new_user.save()
             return {"message": "User added successfully."}, 200
         except Exception as e:
-            print(e)
-            print('here')
             return {"message": "Adding device unsuccessful. Please try again."}, 400
 
     @user_ns.doc(
@@ -133,6 +130,6 @@ class Users(Resource):
         user = UserModel.objects(_id=data['id']).first()
 
         if user.check_password(data['password']):
-            return {"message": "User login successfully."}, 200
+            return {"message": "User login successfully.", "data": user.json()}, 200
 
         return {"message": "User login unsuccessful. Please try again."}, 400
