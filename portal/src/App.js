@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, VStack, Grid } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
 import LandingPage from './containers/LandingPage';
 
 function App() {

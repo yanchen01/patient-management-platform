@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
+import store from './store/store';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { ChakraProvider, theme } from '@chakra-ui/react';
@@ -14,20 +16,21 @@ import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
 
 ReactDOM.render(
-	<StrictMode>
-		<ColorModeScript />
-		<ChakraProvider theme={theme}>
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<App />} />
-					<Route path="/signup" element={<SignUp />} />
-					<Route path="/signin" element={<SignIn />} />
-					<Route path="/dashboard" element={<Dashboard />} />
-				</Routes>
-			</BrowserRouter>
-		</ChakraProvider>
-		,
-	</StrictMode>,
+	<Provider store={store}>
+		<StrictMode>
+			<ColorModeScript />
+			<ChakraProvider theme={theme}>
+				<BrowserRouter>
+					<Routes>
+						<Route path="/" element={<App />} />
+						<Route path="/signup" element={<SignUp />} />
+						<Route path="/signin" element={<SignIn />} />
+						<Route path="/dashboard" element={<Dashboard />} />
+					</Routes>
+				</BrowserRouter>
+			</ChakraProvider>
+		</StrictMode>
+	</Provider>,
 	document.getElementById('root')
 );
 

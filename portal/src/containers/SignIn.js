@@ -12,13 +12,19 @@ import {
 	Text,
 	useColorModeValue
 } from '@chakra-ui/react';
+
 import { useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { signin } from '../store/userSlice';
+
 import { useNavigate } from 'react-router-dom';
 
 import axios from '../axios-api';
 
 export default function SignIn() {
 	let navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
@@ -34,9 +40,9 @@ export default function SignIn() {
 		try {
 			const res = await axios.post('/user/login', user);
 
-			console.log(res);
-
 			if (res.status === 200) {
+				const userInfo = res.data.data;
+				dispatch(signin(userInfo));
 				navigate('/dashboard');
 			}
 		} catch (e) {
