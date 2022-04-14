@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Container } from '@chakra-ui/react';
+import { Container } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import Navbar from '../components/Nav/Navbar';
 
@@ -33,34 +33,31 @@ export default function Dashboard() {
 		setMeasurements([ ...measurements, measurement ]);
 	};
 
-	useEffect(
-		() => {
-			async function fetchMeasurements() {
-				try {
-					const res = await axios.get('/measurement/');
-					if (res.status === 200 && res.data) {
-						let userMeasurements = res.data.data;
+	useEffect(() => {
+		async function fetchMeasurements() {
+			try {
+				const res = await axios.get('/measurement/');
+				if (res.status === 200 && res.data) {
+					let userMeasurements = res.data.data;
 
-						// get current user's measurements
-						userMeasurements = userMeasurements.filter((measurement) => measurement.user_id === user.id);
-						userMeasurements = userMeasurements.map((measurement) => {
-							return {
-								deviceType: measurement.device_type,
-								reading: measurement.reading,
-								unit: measurement.unit
-							};
-						});
-						setMeasurements(userMeasurements);
-					}
-				} catch (e) {
-					console.error(e);
+					// get current user's measurements
+					userMeasurements = userMeasurements.filter((measurement) => measurement.user_id === user.id);
+					userMeasurements = userMeasurements.map((measurement) => {
+						return {
+							deviceType: measurement.device_type,
+							reading: measurement.reading,
+							unit: measurement.unit
+						};
+					});
+					setMeasurements(userMeasurements);
 				}
+			} catch (e) {
+				console.error(e);
 			}
+		}
 
-			fetchMeasurements();
-		},
-		[ measurements, user.id ]
-	);
+		fetchMeasurements();
+	});
 
 	return (
 		<React.Fragment>
