@@ -93,3 +93,11 @@ _device_parser.add_argument('prescribed_doctor',
                             required=False,
                             location='args',
                             )
+
+_user_devices_parser = reqparse.RequestParser()
+_user_devices_parser.add_argument('user_id',
+                            type=str,
+                            required=True,
+                            location='args',
+                            help="This field cannot be blank.")
+                        
