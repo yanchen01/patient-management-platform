@@ -72,3 +72,11 @@ _measurement_parser.add_argument('unit',
                                  required=False,
                                  location='args',
                                  help="This field cannot be blank.")
+
+
+_user_measurements_parser = reqparse.RequestParser()
+_user_measurements_parser.add_argument('user_id',
+                                 type=str,
+                                 required=True,
+                                 location='args',
+                                 help="This field cannot be blank.")

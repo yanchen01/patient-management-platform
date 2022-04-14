@@ -4,7 +4,7 @@ from flask_restx import Resource, Namespace
 from models.device_measurement import DeviceMeasurement as DeviceMeasurementModel
 
 # Import parsers
-from parsers.device_measurement import _measurements_parser, _measurement_parser
+from parsers.device_measurement import _measurements_parser, _measurement_parser, _user_measurements_parser  
 
 measurement_ns = Namespace('measurement', 'Device measurement methods')
 
@@ -111,3 +111,27 @@ class Measurement(Resource):
             return {"message": "Delete measurement successful."}, 200
         except:
             return {"message": "Delete measurement unsuccessful."}, 400
+
+
+@measurement_ns.route('/user')
+class UserMeasurement(Resource):
+    """
+    Shows detail about a measurement, and lets you DELETE, PUT a measurement
+    """
+    @measurement_ns.doc(
+        parser=_user_measurements_parser,
+        responses={
+            200: "Get user measurements successfully.",
+            400: "Get user measurements unsuccessful.",
+        }
+    )
+    def get(self):
+        """Get measurements for a user"""
+        data = _user_measurements_parser.parse_args()
+        try:
+            measurement = DeviceMeasurementModel.objects(
+                user_id=data['user_id']).all()
+            data = [x.json() for x in measurement]
+            return {"message": "Get measurement successful", "data": data}, 200
+        except:
+            return {"message": "Get measurement unsuccessful. Please try again."}, 400

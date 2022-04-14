@@ -146,3 +146,49 @@ _user_login_parser.add_argument('password',
                           required=True,
                           location='json',
                           help="This field cannot be blank.")
+
+_user_add_doctor_parser = reqparse.RequestParser()
+_user_add_doctor_parser.add_argument('user_id',
+                           type=str,
+                           required=True,
+                           location='json',
+                           help="This field cannot be blank.")
+_user_add_doctor_parser.add_argument('doctor_id',
+                           type=str,
+                           required=True,
+                           location='json',
+                           help="This field cannot be blank.")
+
+
+_user_add_nurse_parser = reqparse.RequestParser()
+_user_add_nurse_parser.add_argument('user_id',
+                           type=str,
+                           required=True,
+                           location='json',
+                           help="This field cannot be blank.")
+_user_add_nurse_parser.add_argument('nurse_id',
+                           type=str,
+                           required=True,
+                           location='json',
+                           help="This field cannot be blank.")
+
+
+_user_add_patient_parser = reqparse.RequestParser()
+_user_add_patient_parser.add_argument('user_id',
+                           type=str,
+                           required=True,
+                           location='json',
+                           help="This field cannot be blank.")
+_user_add_patient_parser.add_argument('patient_id',
+                           type=str,
+                           required=True,
+                           location='json',
+                           help="This field cannot be blank.")                           
+
+
+_user_get_parser = reqparse.RequestParser()
+_user_get_parser.add_argument('user_id',
+                           type=str,
+                           required=True,
+                           location='args',
+                           help="This field cannot be blank.")    

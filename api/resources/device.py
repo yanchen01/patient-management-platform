@@ -1,10 +1,10 @@
 from flask_restx import Resource, Namespace
-
+import logging
 # Import models
 from models.device import Device as DeviceModel
 
 # Import parsers
-from parsers.device import _devices_parser, _device_parser
+from parsers.device import _devices_parser, _device_parser, _user_devices_parser
 
 device_ns = Namespace('device', 'Device methods')
 
@@ -109,3 +109,24 @@ class Device(Resource):
 
         except:
             return {"message": "Delete device unsuccessful."}, 400
+
+
+@device_ns.route('/user')
+class UserDevices(Resource):
+    @device_ns.doc(
+        parser=_user_devices_parser,
+        responses={
+            200: "Get user devices successful.",
+            400: "Get user devices unsuccessful.",
+        }
+    )
+    def get(self):
+        """Get user devices"""
+        data = _user_devices_parser.parse_args()
+        try:
+            data = DeviceModel.objects(assigned_user=data['user_id']).all()
+            devices = [x.json() for x in data]
+            return {"message": "Get device successful", "data": devices}, 200
+        except Exception as e:
+            logging.info(e)
+            return {"message": "Get device unsuccessful. Please try again."}, 400
