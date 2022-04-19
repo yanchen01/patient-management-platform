@@ -1,5 +1,6 @@
 from flask_restx import Resource, Namespace
-
+import uuid
+import logging
 # Import models
 from models.device_measurement import DeviceMeasurement as DeviceMeasurementModel
 
@@ -27,8 +28,8 @@ class Measurements(Resource):
 
         # create new measurement
         new_measurement = DeviceMeasurementModel()
+        data['id'] = str(uuid.uuid4())
         new_measurement._set(data)
-
         try:
             new_measurement.save()
             return {"message": "Measurement added successfully."}, 200
