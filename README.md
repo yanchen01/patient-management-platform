@@ -86,9 +86,14 @@ The medical platform should allow multiple roles of personnel to interact with t
 <!-- Branch Strategy -->
 ## Demo
 
-Appointments
+### Make Appointments
 
 https://user-images.githubusercontent.com/48025259/166163632-4b40f15d-829c-4dd6-a2bf-53f0b605c647.mp4
+
+### Real-Time Chat with Users
+
+https://user-images.githubusercontent.com/55996327/166168560-bb9b7d45-a637-4947-a395-74f3ca47a3a1.mov
+
 
 
 ## Screenshots
