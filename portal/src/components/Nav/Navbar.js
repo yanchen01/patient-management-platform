@@ -61,6 +61,10 @@ export default function Navbar({ user }) {
 		{
 			link: '/devices',
 			text: 'Devices'
+		},
+		{
+			link: '/chat',
+			text: 'Chat'
 		}
 	];
 	if (!PATIENT_VIEW_ENTITLEMENTS.includes(user.userRole)) {
@@ -77,6 +81,10 @@ export default function Navbar({ user }) {
 			{
 				link: '/family',
 				text: 'Family'
+			},
+			{
+				link: '/chat',
+				text: 'Chat'
 			}
 		];
 	}

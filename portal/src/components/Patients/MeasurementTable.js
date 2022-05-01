@@ -8,7 +8,6 @@ import {
 	Th,
 	Td,
 	TableContainer,
-	Button,
 	Text,
 	Stack,
 	Center,
@@ -141,7 +140,7 @@ export default function MeasurementTable({ measurements, userId, onAddMeasuremen
 						buttonText={'Add Measurement'}
 						title="Add Measurement"
 						body={AddForm}
-						addMeasurementHandler={addMeasurementHandler}
+						submitHandler={addMeasurementHandler}
 						isOpen={isOpen}
 						onOpen={onOpen}
 						onClose={onClose}

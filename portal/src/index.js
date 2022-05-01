@@ -14,6 +14,7 @@ import App from './App';
 import SignIn from './containers/SignIn';
 import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
+import Chat from './containers/Chat';
 
 ReactDOM.render(
 	<Provider store={store}>
@@ -26,6 +27,7 @@ ReactDOM.render(
 						<Route path="/signup" element={<SignUp />} />
 						<Route path="/signin" element={<SignIn />} />
 						<Route path="/dashboard" element={<Dashboard />} />
+						<Route path="/chat" element={<Chat />} />
 					</Routes>
 				</BrowserRouter>
 			</ChakraProvider>

@@ -157,17 +157,28 @@ The documentation to each module API is accessible at the homepage, which contai
 
 <!-- USAGE EXAMPLES -->
 ### Usage  
-1. Run Flask App
-    - Windows User: python app.py
-    - Mac User: python3 app.py
-OR
-2. Run Flask App via Docker Container (docker installed)
+1. Install Docker & Docker-compose.
+2. Run:  
     ```sh
-        docker build -t flaskapp:latest .
-        docker run -it -p 4000:4000 flaskapp
-        Optional: docker run -it -d -p 4000:4000 flaskapp (automatically runs in background)
+        docker-compose up --build
     ```
-Flask app runs on http://localhost:4000/
+    in the `/api` directory.
+3. Install React dependencies:
+    ```sh
+        npm install
+    ```
+    in the `/portal` directory.
+4. Then start React app with:
+    ```sh
+        npm start
+    ```
+    in the `/portal` directory.
+5. Start the chat socketio server in `/chat-server` directory:
+    ```sh
+        npm start
+    ```
+
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 

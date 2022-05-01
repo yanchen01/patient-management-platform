@@ -8,12 +8,11 @@ import {
 	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
-	useDisclosure,
 	Button
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
-export default function AddModal({ buttonText, title, body, addMeasurementHandler, isOpen, onOpen, onClose }) {
+export default function AddModal({ buttonText, title, body, submitHandler, isOpen, onOpen, onClose }) {
 	return (
 		<React.Fragment>
 			<Button
@@ -36,7 +35,7 @@ export default function AddModal({ buttonText, title, body, addMeasurementHandle
 					<ModalBody>{body}</ModalBody>
 
 					<ModalFooter>
-						<Button onClick={addMeasurementHandler} colorScheme="blue" mr={3}>
+						<Button onClick={submitHandler} colorScheme="blue" mr={3}>
 							Submit
 						</Button>
 						<Button variant="ghost" onClick={onClose}>
