@@ -100,6 +100,12 @@ https://user-images.githubusercontent.com/48025259/166163632-4b40f15d-829c-4dd6-
 <center>Sign In Page</center>
 <center><img src="./images/patient-view.png" width="100%" /></center>
 <center>Patient View Page</center>
+<center><img src="./images/start-chat.png" width="100%" /></center>
+<center>Start Chat Page</center>
+<center><img src="./images/chat-messages.png" width="100%" /></center>
+<center>Chat Messages Page</center>
+<center><img src="./images/mp-view.png" width="100%" /></center>
+<center>Medical Professional View Page</center>
 
 
 <!-- Branch Strategy -->
@@ -123,6 +129,10 @@ Frontend
 2. Sign Up
 3. Sign In
 4. Dashboard for patient view
+5. Dashboard for medica professional view
+6. Book appointment feature
+7. Real-time chat with any user
+
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
