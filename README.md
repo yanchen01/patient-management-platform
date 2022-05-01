@@ -84,6 +84,10 @@ The medical platform should allow multiple roles of personnel to interact with t
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- Branch Strategy -->
+## Demo
+https://user-images.githubusercontent.com/48025259/166163632-4b40f15d-829c-4dd6-a2bf-53f0b605c647.mp4
+
+
 ## Screenshots
 <center><img src="./images/landing.png" width="100%" /></center>
 <center>Landing Page</center>
